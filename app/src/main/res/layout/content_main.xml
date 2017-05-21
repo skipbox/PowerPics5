@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="5dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.laowai.powerpics4.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="98dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:text="Read"
+                android:onClick="buttonOnClick"
+                android:id="@+id/but_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8" />
+
+            <Button
+                android:text="save"
+                android:onClick="buttonOnClick"
+                android:id="@+id/but_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8" />
+        </LinearLayout>
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/np"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:onClick="buttonOnClick"
+                android:text="Priming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_prime" />
+
+            <Button
+                android:onClick="buttonOnClick"
+                android:text="Start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_full_count" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ToggleButton
+                android:onClick="buttonOnClick"
+                android:text="ToggleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toggle_on_off"
+                android:layout_weight="1" />
+
+            <Button
+                android:onClick="buttonOnClick"
+                android:text="sub_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_sub_count"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:onClick="buttonOnClick"
+        android:text="999"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/but_count_all" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="109dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:text="Seconds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button4" />
+
+            <Button
+                android:textSize="20dp"
+                android:textColor="#0d47a1"
+                android:text="123"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_seconds"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <Button
+                android:text="Today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button" />
+
+            <Button
+                android:textColor="#0d47a1"
+                android:text="Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_today" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:text="Minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button8" />
+
+            <Button
+                android:textSize="20dp"
+                android:textColor="#0d47a1"
+                android:text="123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_minutes" />
+
+            <Button
+                android:text="All-Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button6" />
+
+            <Button
+                android:textColor="#0d47a1"
+                android:text="Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/but_all_time" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </TableLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/edit_text_multi"
+        android:text="multi" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="109dp"
+        android:id="@+id/list_id" />
+
+</LinearLayout>
