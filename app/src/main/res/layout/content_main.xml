@@ -76,12 +76,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ToggleButton
+            <Button
                 android:onClick="buttonOnClick"
-                android:text="ToggleButton"
+                android:text="xx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/toggle_on_off"
+                android:id="@+id/but_time_short"
                 android:layout_weight="1" />
 
             <Button

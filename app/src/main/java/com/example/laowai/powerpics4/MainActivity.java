@@ -8,6 +8,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,7 +67,7 @@ import static android.view.View.GONE;
 import static com.example.laowai.powerpics4.R.id.but_prime;
 import static com.example.laowai.powerpics4.R.id.but_sub_count;
 import static com.example.laowai.powerpics4.R.id.list_id;
-import static com.example.laowai.powerpics4.R.id.toggle_on_off;
+//import static com.example.laowai.powerpics4.R.id.toggle_on_off;
 //import static com.example.laowai.powerpics4.R.id.tv;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -76,6 +78,18 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener,AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener{
     //android:screenOrientation="portrait"  // keeps screen from rotation
+    //SharedPreferences========================================================
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String key_1 = "k1";
+    public static final String key_2 = "k2";
+    public static final String key_3 = "k3";
+    public static final String key_4 = "k4";
+    public static final String key_5 = "k5";
+
+        public static final String key_10 = "k10";
+    //can also use integers
+    SharedPreferences sharedpreferences;
+//SharedPreferences========================================================
     ClipboardManager myClipboard;
     ClipData myClip;
 
@@ -92,18 +106,26 @@ public class MainActivity extends AppCompatActivity
     int g_spaced_rep_time = 1;
     int g_spaced_rep_time_holder = 2;//holds the saved time from the text file
 
-
     int int_multiplier = 100;
     MediaPlayer mp;
+
+    String lang_now_x = "ENGLISH";
     @Override // will disable the back button- might be a better way
     public void onBackPressed(){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        lang_now_x =  sharedpreferences.getString(key_1,"default");
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //takes the focus off the edit Text
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //TextToSpeech t1 //declare uptop
         t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -183,17 +205,26 @@ public class MainActivity extends AppCompatActivity
             mp = MediaPlayer.create(getApplicationContext(), R.raw.meetings);mp.start();
             return true;
         }
-        if (id == R.id.menu_top_money) {Toast.makeText(this, "menu_top_money", Toast.LENGTH_SHORT).show();
+        if (id == R.id.menu_top_money) {Toast.makeText(this, "start_act_settings", Toast.LENGTH_SHORT).show();
+            Intent start_act_settings = new Intent(this,Main2Activity.class);
+            startActivity(start_act_settings);
             return true;
         }
         if (id == R.id.action_chinese) {Toast.makeText(this, "action_chinese", Toast.LENGTH_SHORT).show();
-            lang_now ="CHINESE";return true;
+            t1.setLanguage(Locale.CHINESE);
+            lang_now_x ="CHINESE";return true;
         }
         if (id == R.id.action_english) {Toast.makeText(this, "action_english", Toast.LENGTH_SHORT).show();
-            lang_now ="ENGLISH";return true;
+            t1.setLanguage(Locale.ENGLISH);
+            lang_now_x ="ENGLISH";return true;
         }
         if (id == R.id.action_korean) {Toast.makeText(this, "action_korean", Toast.LENGTH_SHORT).show();
-            lang_now ="KOREAN";return true;
+            t1.setLanguage(Locale.KOREAN);
+           lang_now_x ="KOREAN";return true;
+        }
+        if (id == R.id.action_japanese) {Toast.makeText(this, "action_japanese", Toast.LENGTH_SHORT).show();
+            t1.setLanguage(Locale.JAPANESE);
+        lang_now_x ="JAPANESE";return true;
         }
         if (id == R.id.show_save) {Toast.makeText(this, "show_save", Toast.LENGTH_SHORT).show();
             // LinearLayout top_div_obj = (LinearLayout)findViewById(R.id.top_div_but_holder);top_div_obj.setVisibility(View.VISIBLE);
@@ -207,6 +238,16 @@ public class MainActivity extends AppCompatActivity
             //LinearLayout top_div_obj = (LinearLayout)findViewById(R.id.top_div_but_holder);top_div_obj.setVisibility(View.GONE);
             return true;
         }
+         if (id == R.id.start_settings) {Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show();
+            Intent start_act_settings = new Intent(this,Main2Activity.class);
+            startActivity(start_act_settings);
+            return true;
+        }
+
+
+
+
+
         if (id == R.id.menu_top_step) {Toast.makeText(this, "action_1", Toast.LENGTH_SHORT).show();
             myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
             ClipData abc = myClipboard.getPrimaryClip();
@@ -365,7 +406,10 @@ public class MainActivity extends AppCompatActivity
         String first_time_crisis = read_stuff("my_stats.txt");
         //IMPORTANT
 
-        if(first_time_crisis == "error" ){
+         ///if (some_sting.equals("admin")) { }
+
+
+        if(first_time_crisis.equals("error")){
             Toast.makeText(this, "bad sad = "+first_time_crisis, Toast.LENGTH_SHORT).show();
             save_stuff("my_stats.txt","1");// dont make it a 0 lol
             first_time_crisis = "1";
@@ -381,13 +425,13 @@ public class MainActivity extends AppCompatActivity
         String error_yes_no = "0";
 
         error_yes_no =  read_stuff("my_stats.txt");
-        if(error_yes_no =="error"){save_stuff("my_stats.txt","1");}
+        if(error_yes_no.equals("error")){save_stuff("my_stats.txt","1");}
 
         error_yes_no =  read_stuff("time_interval.txt");
-        if(error_yes_no =="error"){save_stuff("time_interval.txt","1");}
+        if(error_yes_no.equals("error")){save_stuff("time_interval.txt","1");}
 
         error_yes_no =  read_stuff("power_challenge_list.txt");
-        if(error_yes_no =="error"){save_stuff("power_challenge_list.txt","1");}
+        if(error_yes_no.equals("error")){save_stuff("power_challenge_list.txt","1");}
 
         // error_yes_no =  read_stuff("my_stats.txt");
         // if(error_yes_no =="error"){save_stuff("my_stats.txt","1");}
@@ -439,67 +483,26 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(the_id == R.id.but_count_all){
-            //Toast.makeText(this, "but_count_all", Toast.LENGTH_SHORT).show();
+        // t1.setLanguage(Locale.CHINESE);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        lang_now_x =  sharedpreferences.getString(key_1,"default");
+ ///if (some_sting.equals("admin")) { }
+        if (lang_now_x.equals("ENGLISH")){t1.setLanguage(Locale.ENGLISH);}
+        if (lang_now_x.equals("CHINESE")){t1.setLanguage(Locale.CHINESE);}
+        if (lang_now_x.equals("JAPANESE")){t1.setLanguage(Locale.JAPANESE);}
 
+        Button my_but=(Button)findViewById(R.id.but_prime);
+        my_but.setText(lang_now_x);
 
-            t1.setLanguage(Locale.CHINESE);
             speak_next_phrase();
         }
-
-        if(the_id == toggle_on_off){
-            // Toast.makeText(this, "toggle_on_off", Toast.LENGTH_SHORT).show();
-            ToggleButton my_toggle = (ToggleButton) findViewById(toggle_on_off);
-            if (!my_toggle.isChecked()){
-                Toast.makeText(this, ""+"toggle is on", Toast.LENGTH_SHORT).show();
-                ListView my_list =(ListView)findViewById(list_id); my_list.setVisibility(GONE);
-                //Button toggleButton_obj = (Button)findViewById(R.id.but_full_count);toggleButton_obj.setVisibility(GONE);
-
-                //SeekBar obj_seekBar = (SeekBar) findViewById(R.id.seekBar); obj_seekBar.setVisibility(GONE);
-                //SeekBar obj_seekBar2 = (SeekBar) findViewById(R.id.seekBar2); obj_seekBar2.setVisibility(GONE);
-                TextView obj_text_multi = (TextView)findViewById(R.id.edit_text_multi);obj_text_multi.setVisibility(View.VISIBLE);
-            }
-            if (my_toggle.isChecked()){
-                Toast.makeText(this, ""+"toggle is off", Toast.LENGTH_SHORT).show();
-                ListView my_list =(ListView)findViewById(list_id); my_list.setVisibility(View.VISIBLE);
-                //  SeekBar obj_seekBar = (SeekBar) findViewById(R.id.seekBar); obj_seekBar.setVisibility(View.VISIBLE);
-                // SeekBar obj_seekBar2 = (SeekBar) findViewById(R.id.seekBar2); obj_seekBar2.setVisibility(View.VISIBLE);
-
-                TextView obj_text_multi = (TextView)findViewById(R.id.edit_text_multi);obj_text_multi.setVisibility(GONE);
-            }
-        }
-//        if(the_id == but_iterate){
-//            Toast.makeText(this, "but_iterate", Toast.LENGTH_SHORT).show();
-//
-////        ClipboardManager myClipboard;
-////        ClipData myClip;
-//            myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
-//            ClipData abc = myClipboard.getPrimaryClip();
-//            ClipData.Item item = abc.getItemAt(0);
-//            String clip_text = item.getText().toString();
-//            Toast.makeText(this, ""+clip_text, Toast.LENGTH_SHORT).show();
-//        }
-
-
-
-//    if(the_id == R.id.xxx){Toast.makeText(this, "write_txt_file", Toast.LENGTH_SHORT).show();}
-//    if(the_id == R.id.xxx){Toast.makeText(this, "write_txt_file", Toast.LENGTH_SHORT).show();}
-//    if(the_id == R.id.xxx){Toast.makeText(this, "write_txt_file", Toast.LENGTH_SHORT).show();}
+//==========
     }
-    String lang_now = "ENGLISH";
-    public void speak_this(String words_to_say){
-        if (lang_now == "ENGLISH") {t1.setLanguage(Locale.ENGLISH);}
-        if (lang_now == "CHINESE") {t1.setLanguage(Locale.CHINESE);}
-        if (lang_now == "KOREAN") {t1.setLanguage(Locale.KOREAN);}
 
+    public void speak_this(String words_to_say){
         t1.speak(words_to_say, TextToSpeech.QUEUE_FLUSH, null);
         Toast.makeText(this, ""+words_to_say, Toast.LENGTH_SHORT).show();
-
     }
-    //public void speak_chinese(String words_to_say){t2.speak(words_to_say, TextToSpeech.QUEUE_FLUSH, null);
-    //
-    //Switch switch_x = (Switch) findViewById(R.id.switch1);
-    //switch_x.setOnChage
-
     @Override
     public void onClick(View v) {
 

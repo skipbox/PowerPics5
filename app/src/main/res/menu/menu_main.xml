@@ -22,6 +22,11 @@
         android:orderInCategory="100"
         android:title="KOREAN"
         app:showAsAction="never" />
+     <item
+        android:id="@+id/action_japanese"
+        android:orderInCategory="100"
+        android:title="JAPANESE"
+        app:showAsAction="never" />
     <item
         android:id="@+id/show_save"
         android:orderInCategory="100"
@@ -50,7 +55,11 @@
         android:orderInCategory="100"
         android:title="rule_of_3"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/start_settings"
+        android:orderInCategory="100"
+        android:title="start_settings"
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_top_bell"
         android:orderInCategory="100"
@@ -75,10 +84,5 @@
         android:title="@string/action_settings"
         app:showAsAction="always"
         android:icon="@mipmap/ic_launcher" />
-
-
-
-
-
 </menu>
 
