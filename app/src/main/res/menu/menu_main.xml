@@ -28,14 +28,14 @@
         android:title="JAPANESE"
         app:showAsAction="never" />
     <item
-        android:id="@+id/show_save"
+        android:id="@+id/soft_input"
         android:orderInCategory="100"
-        android:title="show_save"
+        android:title="soft_input"
         app:showAsAction="never" />
     <item
-        android:id="@+id/hide_save"
+        android:id="@+id/set_log"
         android:orderInCategory="100"
-        android:title="hide_save"
+        android:title="set_log"
         app:showAsAction="never" />
 
     <item

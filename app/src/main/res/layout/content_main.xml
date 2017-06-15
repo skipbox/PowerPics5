@@ -43,12 +43,6 @@
                 android:layout_weight=".8" />
         </LinearLayout>
 
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/np"
-            android:layout_weight="1" />
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -57,7 +51,7 @@
 
             <Button
                 android:onClick="buttonOnClick"
-                android:text="Priming"
+                android:text="Language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/but_prime" />
@@ -78,18 +72,19 @@
 
             <Button
                 android:onClick="buttonOnClick"
-                android:text="xx"
-                android:layout_width="match_parent"
+                android:text="xxyyy"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/but_time_short"
                 android:layout_weight="1" />
 
             <Button
+                android:textColor="#008000"
                 android:onClick="buttonOnClick"
-                android:text="sub_count"
+                android:text="clock_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/but_sub_count"
+                android:id="@+id/but_clock_time"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -106,71 +101,65 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="109dp">
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
             <Button
-                android:text="Seconds"
+                android:onClick="buttonOnClick"
+                android:text="sound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button4" />
+                android:id="@+id/sec_temp" />
 
             <Button
-                android:textSize="20dp"
+                android:text="Repeat"
                 android:textColor="#0d47a1"
-                android:text="123"
+                android:onClick="buttonOnClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/but_seconds"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:id="@+id/but_repeat" />
 
             <Button
-                android:text="Today"
+                android:onClick="buttonOnClick"
+                android:textColor="#008000"
+                android:text="Rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button" />
-
-            <Button
-                android:textColor="#0d47a1"
-                android:text="Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/but_today" />
+                android:id="@+id/but_rate"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <Button
-                android:text="Minutes"
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:onClick="check_click"
+                android:text="buzz"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button8" />
+                android:id="@+id/check_buzz" />
 
-            <Button
-                android:textSize="20dp"
-                android:textColor="#0d47a1"
-                android:text="123"
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:onClick="check_click"
+                android:text="Size"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/but_minutes" />
+                android:id="@+id/check_size" />
+            <CheckBox
+                android:onClick="check_click"
+                android:text="Lock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/check_lock" />
 
-            <Button
-                android:text="All-Time"
+            <TextView
+                android:text="on_of"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button6" />
-
-            <Button
-                android:textColor="#0d47a1"
-                android:text="Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/but_all_time" />
+                android:id="@+id/tv_lock_on_off" />
         </TableRow>
 
         <TableRow
