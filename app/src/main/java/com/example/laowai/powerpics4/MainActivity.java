@@ -654,7 +654,7 @@ public class MainActivity extends AppCompatActivity {
         if(sound_to_play.equals("end_fx")){
             mp = MediaPlayer.create(getApplicationContext(), R.raw.end_fx);mp.start();}
         if(sound_to_play.equals("skype_feedback")){
-            mp = MediaPlayer.create(getApplicationContext(), skype_feedback);mp.start();}
+            mp = MediaPlayer.create(getApplicationContext(), R.raw.skype_feedback);mp.start();}
         if(sound_to_play.equals("sms_alert_4")){
             mp = MediaPlayer.create(getApplicationContext(), R.raw.sms_alert_4);mp.start();}
     }
